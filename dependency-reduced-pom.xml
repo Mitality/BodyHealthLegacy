@@ -6,7 +6,6 @@
   <name>BodyHealthLegacy</name>
   <version>1.0</version>
   <build>
-    <defaultGoal>clean package</defaultGoal>
     <resources>
       <resource>
         <filtering>true</filtering>
@@ -16,7 +15,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
+        <version>3.8.1</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -24,7 +23,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.5.3</version>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -33,6 +32,14 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <relocations>
+            <relocation>
+              <pattern>com.jeff_media.updatechecker</pattern>
+              <shadedPattern>bodyhealth.updatechecker</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
       </plugin>
     </plugins>
   </build>

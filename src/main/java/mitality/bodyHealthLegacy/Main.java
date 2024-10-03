@@ -29,7 +29,6 @@ import java.util.*;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
-    private static String GITHUB_STRING;
     public static Map<UUID, BodyHealth> playerBodyHealthMap;
     public static PlaceholderAPI placeholderAPIexpansion;
     public static long validationTimestamp;
@@ -38,7 +37,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         validationTimestamp = 0;
-        GITHUB_STRING = "Mitality/BodyHealth";
+        String GITHUB_STRING = "Mitality/BodyHealth";
 
         Debug.log("Initializing...");
 
@@ -67,8 +66,8 @@ public final class Main extends JavaPlugin {
 
         // Commands and Listeners
         Bukkit.getPluginManager().registerEvents(new BodyHealthListener(), this);
-        Objects.requireNonNull(Main.getPlugin(Main.class).getCommand("bodyhealth")).setExecutor(new BodyHealthCommand());
-        Objects.requireNonNull(Main.getPlugin(Main.class).getCommand("bodyhealth")).setTabCompleter(new BodyHealthTAB());
+        Objects.requireNonNull(getCommand("bodyhealth")).setExecutor(new BodyHealthCommand());
+        Objects.requireNonNull(getCommand("bodyhealth")).setTabCompleter(new BodyHealthTAB());
         Debug.log("Registered Commands and Listeners");
 
         // Register Placeholders

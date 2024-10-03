@@ -1,6 +1,6 @@
-name: BodyHealthLegacy
+name: BodyHealth
 version: '${project.version}'
-main: mitality.bodyHealthLegacy.BodyHealthLegacy
+main: mitality.bodyHealthLegacy.Main
 api-version: '1.20'
 authors:
   - Mitality

@@ -3,7 +3,7 @@
 #   |  _ \ / _ \ / _` | | | | |_| |/ _ \/ _` | | __| '_ \ | |   / _ \/ _` |/ _` |/ __| | | |
 #   | |_) | (_) | (_| | |_| |  _  |  __/ (_| | | |_| | | || |__|  __/ (_| | (_| | (__| |_| |
 #   |____/ \___/ \__,_|\__, |_| |_|\___|\__,_|_|\__|_| |_||_____\___|\__, |\__,_|\___|\__, |
-#      Version ${project.version}   |___/  Manage health per BodyPart            |___/            |___/
+#       Version ${project.version}    |___/   Manage health per BodyPart (1.20.4-)   |___/            |___/
 
 # PaperMC 1.20.4 exclusive - For those who can't update to 1.20.6 / 1.21 yet
 

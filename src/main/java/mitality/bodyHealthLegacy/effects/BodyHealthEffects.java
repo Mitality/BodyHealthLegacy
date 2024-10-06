@@ -158,7 +158,7 @@ public class BodyHealthEffects {
 
         // KILL_PLAYER
         else if (effectParts[0].trim().equalsIgnoreCase("KILL_PLAYER")) {
-            if (!player.isDead()) player.setHealth(0.0);
+            if (!player.isDead()) player.damage(Double.MAX_VALUE, player); //player.setHealth(0.0);
             Debug.log("(" + part.name() +") Killed player " + player.getName());
         }
 

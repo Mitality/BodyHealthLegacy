@@ -6,6 +6,7 @@ import mitality.bodyHealthLegacy.config.Lang;
 import mitality.bodyHealthLegacy.data.DataManager;
 import mitality.bodyHealthLegacy.data.HealthStorage;
 import mitality.bodyHealthLegacy.depend.PlaceholderAPI;
+import mitality.bodyHealthLegacy.depend.WorldGuard;
 import mitality.bodyHealthLegacy.effects.BodyHealthEffects;
 import mitality.bodyHealthLegacy.listeners.BetterHudListener;
 import mitality.bodyHealthLegacy.listeners.BodyHealthListener;
@@ -34,9 +35,14 @@ public final class Main extends JavaPlugin {
     public static long validationTimestamp;
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
         instance = this;
         validationTimestamp = 0;
+        if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null)  WorldGuard.initialize();
+    }
+
+    @Override
+    public void onEnable() {
         String GITHUB_STRING = "Mitality/BodyHealth";
 
         Debug.log("Initializing...");
@@ -103,9 +109,9 @@ public final class Main extends JavaPlugin {
 
         // Check for updates
         new UpdateChecker(this, UpdateCheckSource.GITHUB_RELEASE_TAG, GITHUB_STRING)
-                .setDownloadLink("https://www.spigotmc.org/resources/bodyhealth.119966/")
+                .setDownloadLink("https://github.com/Mitality/BodyHealthLegacy/releases/latest")
                 .setDonationLink("https://paypal.me/mitality")
-                .setChangelogLink("https://www.spigotmc.org/resources/bodyhealth.119966/updates")
+                .setChangelogLink("https://github.com/Mitality/BodyHealthLegacy/releases/latest")
                 .setNotifyByPermissionOnJoin("bodyhealth.update-notify")
                 .setUserAgent(new UserAgentBuilder().addPluginNameAndVersion())
                 .checkEveryXHours(1).checkNow();

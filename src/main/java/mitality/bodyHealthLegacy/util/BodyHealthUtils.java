@@ -3,6 +3,7 @@ package mitality.bodyHealthLegacy.util;
 import mitality.bodyHealthLegacy.config.Config;
 import mitality.bodyHealthLegacy.config.Debug;
 import mitality.bodyHealthLegacy.config.Lang;
+import mitality.bodyHealthLegacy.depend.WorldGuard;
 import mitality.bodyHealthLegacy.effects.BodyHealthEffects;
 import mitality.bodyHealthLegacy.core.BodyHealth;
 import mitality.bodyHealthLegacy.Main;
@@ -72,6 +73,19 @@ public class BodyHealthUtils {
             BodyHealthEffects.addEffectsToPlayer(player);
         }
 
+        return true;
+    }
+
+    /**
+     * Checks if BodyHealth should be enabled for a given player
+     * @param player The player for which to check if BodyHealth should be enabled
+     * @return A boolean representing if BodyHealth should be enabled for the given player
+     */
+    public static boolean isSystemEnabled(Player player) {
+        if (!isSystemEnabled(player.getWorld())) return false;
+        if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null
+                && Bukkit.getPluginManager().getPlugin("WorldGuard").isEnabled())
+            return WorldGuard.isSystemEnabled(player);
         return true;
     }
 

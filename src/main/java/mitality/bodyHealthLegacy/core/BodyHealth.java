@@ -1,7 +1,6 @@
 package mitality.bodyHealthLegacy.core;
 
 import mitality.bodyHealthLegacy.config.Debug;
-import mitality.bodyHealthLegacy.depend.WorldGuard;
 import mitality.bodyHealthLegacy.effects.BodyHealthEffects;
 import mitality.bodyHealthLegacy.util.BodyHealthUtils;
 import org.bukkit.Bukkit;
@@ -33,7 +32,7 @@ public class BodyHealth {
     public void applyDamage(BodyPart part, double damage) {
         Player player = Bukkit.getPlayer(playerUUID);
         if (player != null) {
-            if (!WorldGuard.isSystemEnabled(player)) return;
+            if (!BodyHealthUtils.isSystemEnabled(player)) return;
             if (player.hasPermission("bodyhealth.bypass.damage." + part.name().toLowerCase())) return;
             double currentHealth = healthMap.get(part);
             BodyPartState oldState = BodyHealthUtils.getBodyHealthState(this, part);
@@ -52,7 +51,7 @@ public class BodyHealth {
     public void regenerateHealth(double regenAmount) {
         Player player = Bukkit.getPlayer(playerUUID);
         if (player != null) {
-            if (!WorldGuard.isSystemEnabled(player)) return;
+            if (!BodyHealthUtils.isSystemEnabled(player)) return;
             for (BodyPart part : BodyPart.values()) {
                 if (player.hasPermission("bodyhealth.bypass.regen." + part.name().toLowerCase())) return;
                 double currentHealth = healthMap.get(part);
@@ -87,7 +86,7 @@ public class BodyHealth {
         healthMap.put(part, Math.min(100, Math.max(0, newHealth))); // Keep health between 0 and 100
         Player player = Bukkit.getPlayer(playerUUID);
         if (player != null) {
-            if (!WorldGuard.isSystemEnabled(player)) return;
+            if (!BodyHealthUtils.isSystemEnabled(player)) return;
             BodyHealthEffects.onBodyPartStateChange(player, part, oldState, BodyHealthUtils.getBodyHealthState(this, part));
         }
     }

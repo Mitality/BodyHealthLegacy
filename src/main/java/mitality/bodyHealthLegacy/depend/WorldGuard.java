@@ -8,7 +8,6 @@ import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import mitality.bodyHealthLegacy.config.Debug;
-import mitality.bodyHealthLegacy.util.BodyHealthUtils;
 import org.bukkit.entity.Player;
 
 public class WorldGuard {
@@ -27,26 +26,13 @@ public class WorldGuard {
     }
 
     public static boolean isSystemEnabled(Player player) {
-        Debug.logDev("Checking if system is enabled for player " + player.getName());
-
-        if (!BodyHealthUtils.isSystemEnabled(player.getWorld())) {
-            Debug.logDev("System disabled via world-blacklist");
-            return false;
-        }
-
-        if (BODY_HEALTH_FLAG == null) {
-            Debug.logDev("Flag 'bodyhealth' not found (is null)");
-            return true;
-        }
+        if (BODY_HEALTH_FLAG == null) return true;
 
         RegionContainer container = com.sk89q.worldguard.WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionManager regions = container.get(BukkitAdapter.adapt(player.getWorld()));
         LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(player);
 
-        if (regions == null) {
-            Debug.logDev("No regions found (RegionManager is null)");
-            return true;
-        }
+        if (regions == null) return true;
 
         ApplicableRegionSet regionSet = regions.getApplicableRegions(BukkitAdapter.asBlockVector(player.getLocation()));
         return regionSet.testState(localPlayer, BODY_HEALTH_FLAG);

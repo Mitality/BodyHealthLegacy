@@ -43,7 +43,6 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        String GITHUB_STRING = "Mitality/BodyHealth";
 
         Debug.log("Initializing...");
 
@@ -108,7 +107,7 @@ public final class Main extends JavaPlugin {
         else Debug.log("No existing data was found");
 
         // Check for updates
-        new UpdateChecker(this, UpdateCheckSource.GITHUB_RELEASE_TAG, GITHUB_STRING)
+        new UpdateChecker(this, UpdateCheckSource.GITHUB_RELEASE_TAG, "Mitality/BodyHealthLegacy")
                 .setDownloadLink("https://github.com/Mitality/BodyHealthLegacy/releases/latest")
                 .setDonationLink("https://paypal.me/mitality")
                 .setChangelogLink("https://github.com/Mitality/BodyHealthLegacy/releases/latest")

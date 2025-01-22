@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: 'голова'
+    BODY: 'тіло'
+    ARM_LEFT: 'ліва рука'
+    ARM_RIGHT: 'права рука'
+    LEG_LEFT: 'ліва нога'
+    LEG_RIGHT: 'права нога'
+    FOOT_LEFT: 'ліва стопа'
+    FOOT_RIGHT: 'права стопа'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&bВикористання: /bodyhealth <команда>'
+
+    # Message shown for invalid subcommands
+    invalid: '&cНевірна дія. Будь ласка, використовуйте дійсну команду.'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&cЦю команду можуть використовувати тільки гравці.'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&cУ вас немає дозволу використовувати цю команду.'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&bВикористання: /bodyhealth add [гравець] [частина тіла] <значення>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cБудь ласка, вкажіть гравця, коли виконуєте цю команду з консолі.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cНевірне значення здоров’я: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aУспішно додано {Value} до всіх частин тіла для {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aУспішно додано {Value} до {Part} гравця {Player}.'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&bВикористання: /bodyhealth get [гравець] [частина тіла]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cБудь ласка, вкажіть гравця, коли виконуєте цю команду з консолі.'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&aЗдоров'я тіла гравця {Player}:\n&e&lГолова &8&l» &a{Health_HEAD}%\n&e&lТіло &8&l» &a{Health_BODY}%\n&e&lЛіва рука &8&l» &a{Health_ARM_LEFT}%\n&e&lПрава рука &8&l» &a{Health_ARM_RIGHT}%\n&e&lЛіва нога &8&l» &a{Health_LEG_LEFT}%\n&e&lПрава нога &8&l» &a{Health_LEG_RIGHT}%\n&e&lЛіва стопа &8&l» &a{Health_FOOT_LEFT}%\n&e&lПрава стопа &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&aЗдоров’я {Part} гравця {Player} становить {Health}%.'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&bВикористання: /bodyhealth set [гравець] [частина тіла] <значення>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cБудь ласка, вкажіть гравця, коли виконуєте цю команду з консолі.'
+
+      # Message shown on successful healing
+      success-all: '&a{Player} був повністю вилікуваний.'
+
+      # Message shown on successful healing
+      success-single: '&a{Player}''s {Part} був повністю вилікуваний.'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&aКонфігурацію успішно перезавантажено.'
+
+      # Message shown if reload fails
+      fail: '&cНе вдалося перезавантажити конфігурацію.'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&bВикористання: /bodyhealth set [гравець] [частина тіла] <значення>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cБудь ласка, вкажіть гравця, коли виконуєте цю команду з консолі.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cНевірне значення здоров’я: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aВсі частини тіла гравця {Player} були успішно встановлені на {Value}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aЧастина тіла {Part} гравця {Player} була успішно встановлена на {Value}.'

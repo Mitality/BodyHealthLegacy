@@ -1,7 +1,7 @@
-name: BodyHealthLegacy
+name: BodyHealth
 version: '${project.version}'
-main: mitality.bodyHealthLegacy.Main
-api-version: '1.20'
+main: bodyhealth.Main
+api-version: '1.21'
 authors:
   - Mitality
 description: Minecraft Spigot Plugin to manage Health per BodyPart
@@ -30,6 +30,9 @@ commands:
       bodyhealth.set:
         description: Allows using the set command
         default: op
+      bodyhealth.add:
+        description: Allows using the set command
+        default: op
       bodyhealth.*:
         description: Allows managing body health
         default: op
@@ -38,6 +41,7 @@ commands:
           bodyhealth.heal: true
           bodyhealth.get: true
           bodyhealth.set: true
+          bodyhealth.add: true
 
 permissions:
 

@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: 'hlava'
+    BODY: 'tělo'
+    ARM_LEFT: 'levá ruka'
+    ARM_RIGHT: 'pravá ruka'
+    LEG_LEFT: 'levá noha'
+    LEG_RIGHT: 'pravá noha'
+    FOOT_LEFT: 'levá noha'
+    FOOT_RIGHT: 'pravá noha'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&bPoužití: /bodyhealth <podpříkaz>'
+
+    # Message shown for invalid subcommands
+    invalid: '&cNeplatná akce. Použijte prosím platný podpříkaz.'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&cTento podpříkaz může být proveden pouze hráči.'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&cNemáte oprávnění k použití tohoto příkazu.'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&bPoužití: /bodyhealth add [hráč] [část těla] <hodnota>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cZadejte hráče, když spouštíte tento příkaz z konzole.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cNeplatná hodnota zdraví: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aÚspěšně přidáno {Value} ke všem částem těla {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aÚspěšně přidáno {Value} k {Player}''s {Part}.'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&bPoužití: /bodyhealth get [hráč] [část těla]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cZadejte hráče, když spouštíte tento příkaz z konzole.'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&aZdraví těla {Player}:\n&e&lHlava &8&l» &a{Health_HEAD}%\n&e&lTělo &8&l» &a{Health_BODY}%\n&e&lLevá ruka &8&l» &a{Health_ARM_LEFT}%\n&e&lPravá ruka &8&l» &a{Health_ARM_RIGHT}%\n&e&lLevá noha &8&l» &a{Health_LEG_LEFT}%\n&e&lPravá noha &8&l» &a{Health_LEG_RIGHT}%\n&e&lLevá noha &8&l» &a{Health_FOOT_LEFT}%\n&e&lPravá noha &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&a{Player}''s {Part} je na {Health}%.'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&bPoužití: /bodyhealth set [hráč] [část těla] <hodnota>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cZadejte hráče, když spouštíte tento příkaz z konzole.'
+
+      # Message shown on successful healing
+      success-all: '&a{Player} byl úplně vyléčen.'
+
+      # Message shown on successful healing
+      success-single: '&a{Player}''s {Part} bylo úplně vyléčeno.'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&aKonfigurace byla znovu načtena.'
+
+      # Message shown if reload fails
+      fail: '&cKonfigurace se nepodařilo znovu načíst.'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&bPoužití: /bodyhealth set [hráč] [část těla] <hodnota>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cZadejte hráče, když spouštíte tento příkaz z konzole.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cNeplatná hodnota zdraví: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aÚspěšně nastavena hodnota {Value} pro všechny části těla {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aÚspěšně nastavena hodnota {Value} pro {Player}''s {Part}.'

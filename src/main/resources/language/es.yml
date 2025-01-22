@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: 'cabeza'
+    BODY: 'cuerpo'
+    ARM_LEFT: 'brazo izquierdo'
+    ARM_RIGHT: 'brazo derecho'
+    LEG_LEFT: 'pierna izquierda'
+    LEG_RIGHT: 'pierna derecha'
+    FOOT_LEFT: 'pie izquierdo'
+    FOOT_RIGHT: 'pie derecho'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&bUso: /bodyhealth <subcomando>'
+
+    # Message shown for invalid subcommands
+    invalid: '&cAcción inválida. Por favor, usa un subcomando válido.'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&cEste subcomando solo puede ser ejecutado por jugadores.'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&cNo tienes permiso para usar este comando.'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&bUso: /bodyhealth add [jugador] [parte del cuerpo] <valor>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cPor favor, proporciona un jugador al ejecutar este comando desde la consola.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cValor de salud inválido: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aSe añadió con éxito {Value} a todas las partes del cuerpo de {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aSe añadió con éxito {Value} a la {Part} de {Player}.'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&bUso: /bodyhealth get [jugador] [parte del cuerpo]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cPor favor, proporciona un jugador al ejecutar este comando desde la consola.'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&aSalud corporal de {Player}:\n&e&lCabeza &8&l» &a{Health_HEAD}%\n&e&lCuerpo &8&l» &a{Health_BODY}%\n&e&lBrazo izquierdo &8&l» &a{Health_ARM_LEFT}%\n&e&lBrazo derecho &8&l» &a{Health_ARM_RIGHT}%\n&e&lPierna izquierda &8&l» &a{Health_LEG_LEFT}%\n&e&lPierna derecha &8&l» &a{Health_LEG_RIGHT}%\n&e&lPie izquierdo &8&l» &a{Health_FOOT_LEFT}%\n&e&lPie derecho &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&aLa {Part} de {Player} está al {Health}%.'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&bUso: /bodyhealth set [jugador] [parte del cuerpo] <valor>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cPor favor, proporciona un jugador al ejecutar este comando desde la consola.'
+
+      # Message shown on successful healing
+      success-all: '&a{Player} ha sido completamente curado.'
+
+      # Message shown on successful healing
+      success-single: '&aLa {Part} de {Player} ha sido completamente curada.'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&aLa configuración se ha recargado.'
+
+      # Message shown if reload fails
+      fail: '&cNo se pudo recargar la configuración.'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&bUso: /bodyhealth set [jugador] [parte del cuerpo] <valor>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cPor favor, proporciona un jugador al ejecutar este comando desde la consola.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cValor de salud inválido: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aSe estableció con éxito {Value} en todas las partes del cuerpo de {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aSe estableció con éxito {Value} en la {Part} de {Player}.'

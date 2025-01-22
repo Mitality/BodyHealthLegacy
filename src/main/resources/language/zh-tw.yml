@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: '頭部'
+    BODY: '身體'
+    ARM_LEFT: '左臂'
+    ARM_RIGHT: '右臂'
+    LEG_LEFT: '左腿'
+    LEG_RIGHT: '右腿'
+    FOOT_LEFT: '左腳'
+    FOOT_RIGHT: '右腳'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&b用法: /bodyhealth <指令>'
+
+    # Message shown for invalid subcommands
+    invalid: '&c無效的操作。請使用有效的指令。'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&c此指令只能由玩家執行。'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&c您無權使用此指令。'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&b用法: /bodyhealth add [玩家] [身體部位] <數值>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&c如果從控制台執行此指令，請提供目標玩家。'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&c無效的健康數值: "{Value}"。'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&a成功為{Player}的所有身體部位添加{Value}。'
+
+      # Message shown on successful health update (given part)
+      success-single: '&a成功為{Player}的{Part}添加{Value}。'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&b用法: /bodyhealth get [玩家] [身體部位]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&c如果從控制台執行此指令，請提供目標玩家。'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&a{Player}的身體健康狀況：\n&e&l頭部 &8&l» &a{Health_HEAD}%\n&e&l身體 &8&l» &a{Health_BODY}%\n&e&l左臂 &8&l» &a{Health_ARM_LEFT}%\n&e&l右臂 &8&l» &a{Health_ARM_RIGHT}%\n&e&l左腿 &8&l» &a{Health_LEG_LEFT}%\n&e&l右腿 &8&l» &a{Health_LEG_RIGHT}%\n&e&l左腳 &8&l» &a{Health_FOOT_LEFT}%\n&e&l右腳 &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&a{Player}的{Part}健康狀況為{Health}%。'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&b用法: /bodyhealth set [玩家] [身體部位] <數值>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&c如果從控制台執行此指令，請提供目標玩家。'
+
+      # Message shown on successful healing
+      success-all: '&a{Player}已完全恢復。'
+
+      # Message shown on successful healing
+      success-single: '&a{Player}的{Part}已完全恢復。'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&a配置已成功重新加載。'
+
+      # Message shown if reload fails
+      fail: '&c無法重新加載配置。'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&b用法: /bodyhealth set [玩家] [身體部位] <數值>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&c如果從控制台執行此指令，請提供目標玩家。'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&c無效的健康數值: "{Value}"。'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&a成功將{Player}的所有身體部位設置為{Value}。'
+
+      # Message shown on successful health update (given part)
+      success-single: '&a成功將{Player}的{Part}設置為{Value}。'

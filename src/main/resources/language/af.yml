@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: 'kop'
+    BODY: 'liggaam'
+    ARM_LEFT: 'linker arm'
+    ARM_RIGHT: 'regter arm'
+    LEG_LEFT: 'linker been'
+    LEG_RIGHT: 'regter been'
+    FOOT_LEFT: 'linker voet'
+    FOOT_RIGHT: 'regter voet'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&bGebruik: /bodyhealth <subbevel>'
+
+    # Message shown for invalid subcommands
+    invalid: '&cOngeldige aksie. Gebruik asseblief ''n geldige subbevel.'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&cHierdie subbevel kan net deur spelers uitgevoer word.'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&cJy het nie die reg om hierdie opdrag uit te voer nie.'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&bGebruik: /bodyhealth add [speler] [liggaamsdeel] <waarde>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cGee asseblief ''n speler aan wanneer jy hierdie opdrag vanaf die konsole uitvoer.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cOngeldige gesondheidwaarde: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aGeglade {Value} by alle liggaamsdele van {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aGeglade {Value} by {Player}''s {Part}.'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&bGebruik: /bodyhealth get [speler] [liggaamsdeel]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cGee asseblief ''n speler aan wanneer jy hierdie opdrag vanaf die konsole uitvoer.'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&a{Player}'s liggaamsgesondheid:\n&e&lKop &8&l» &a{Health_HEAD}%\n&e&lLiggaam &8&l» &a{Health_BODY}%\n&e&lLinker arm &8&l» &a{Health_ARM_LEFT}%\n&e&lRegter arm &8&l» &a{Health_ARM_RIGHT}%\n&e&lLinker been &8&l» &a{Health_LEG_LEFT}%\n&e&lRegter been &8&l» &a{Health_LEG_RIGHT}%\n&e&lLinker voet &8&l» &a{Health_FOOT_LEFT}%\n&e&lRegter voet &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&a{Player}''s {Part} is by {Health}%.'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&bGebruik: /bodyhealth set [speler] [liggaamsdeel] <waarde>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cGee asseblief ''n speler aan wanneer jy hierdie opdrag vanaf die konsole uitvoer.'
+
+      # Message shown on successful healing
+      success-all: '&a{Player} is heeltemal genees.'
+
+      # Message shown on successful healing
+      success-single: '&a{Player}''s {Part} is heeltemal genees.'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&aKonfigurasie is herlaai.'
+
+      # Message shown if reload fails
+      fail: '&cKonfigurasie kon nie herlaai word nie.'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&bGebruik: /bodyhealth set [speler] [liggaamsdeel] <waarde>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cGee asseblief ''n speler aan wanneer jy hierdie opdrag vanaf die konsole uitvoer.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cOngeldige gesondheidwaarde: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aAlle liggaamsdele is suksesvol na {Value} vir {Player} gestel.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aSuksesvol {Player}''s {Part} na {Value} gestel.'

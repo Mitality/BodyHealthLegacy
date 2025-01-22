@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: 'huvud'
+    BODY: 'kropp'
+    ARM_LEFT: 'vänster arm'
+    ARM_RIGHT: 'höger arm'
+    LEG_LEFT: 'vänster ben'
+    LEG_RIGHT: 'höger ben'
+    FOOT_LEFT: 'vänster fot'
+    FOOT_RIGHT: 'höger fot'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&bAnvändning: /bodyhealth <kommando>'
+
+    # Message shown for invalid subcommands
+    invalid: '&cOgiltig åtgärd. Vänligen använd ett giltigt kommando.'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&cDetta kommando kan endast användas av spelare.'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&cDu har inte tillstånd att använda detta kommando.'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&bAnvändning: /bodyhealth add [spelare] [kroppsdel] <värde>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVänligen ange en spelare när du använder detta kommando från konsolen.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cOgiltigt hälsovärde: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aFramgångsrikt tillagt {Value} till alla kroppsdelar för {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aFramgångsrikt tillagt {Value} till {Part} för {Player}.'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&bAnvändning: /bodyhealth get [spelare] [kroppsdel]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVänligen ange en spelare när du använder detta kommando från konsolen.'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&a{Player}'s kroppshälsa:\n&e&lHuvud &8&l» &a{Health_HEAD}%\n&e&lKropp &8&l» &a{Health_BODY}%\n&e&lVänster arm &8&l» &a{Health_ARM_LEFT}%\n&e&lHöger arm &8&l» &a{Health_ARM_RIGHT}%\n&e&lVänster ben &8&l» &a{Health_LEG_LEFT}%\n&e&lHöger ben &8&l» &a{Health_LEG_RIGHT}%\n&e&lVänster fot &8&l» &a{Health_FOOT_LEFT}%\n&e&lHöger fot &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&a{Player}''s {Part} är vid {Health}%.'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&bAnvändning: /bodyhealth set [spelare] [kroppsdel] <värde>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVänligen ange en spelare när du använder detta kommando från konsolen.'
+
+      # Message shown on successful healing
+      success-all: '&a{Player} har blivit helt läkt.'
+
+      # Message shown on successful healing
+      success-single: '&a{Player}''s {Part} har blivit helt läkt.'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&aKonfigurationen har laddats om.'
+
+      # Message shown if reload fails
+      fail: '&cKonfigurationen kunde inte laddas om.'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&bAnvändning: /bodyhealth set [spelare] [kroppsdel] <värde>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVänligen ange en spelare när du använder detta kommando från konsolen.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cOgiltigt hälsovärde: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aFramgångsrikt satt alla kroppsdelar till {Value} för {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aFramgångsrikt satt {Player}''s {Part} till {Value}.'

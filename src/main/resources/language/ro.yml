@@ -1,0 +1,99 @@
+definitions:
+
+  body-parts:
+
+    # Used in command responses ({Part})
+    HEAD: 'cap'
+    BODY: 'corp'
+    ARM_LEFT: 'braț stâng'
+    ARM_RIGHT: 'braț drept'
+    LEG_LEFT: 'picior stâng'
+    LEG_RIGHT: 'picior drept'
+    FOOT_LEFT: 'picior stâng'
+    FOOT_RIGHT: 'picior drept'
+
+commands:
+
+  bodyhealth:
+
+    # Message shown for incorrect command usage
+    usage: '&bUtilizare: /bodyhealth <comandă>'
+
+    # Message shown for invalid subcommands
+    invalid: '&cAcțiune invalidă. Vă rugăm să utilizați o comandă validă.'
+
+    # Message shown if a command is player-only but used from the console
+    player-only: '&cAceastă comandă poate fi utilizată doar de jucători.'
+
+    # Message shown if the player lacks permission for a command
+    not-permitted: '&cNu aveți permisiunea de a utiliza această comandă.'
+
+    add:
+
+      # Message shown for incorrect command usage
+      usage: '&bUtilizare: /bodyhealth add [jucător] [parte a corpului] <valoare>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVă rugăm să furnizați un jucător când utilizați această comandă din consolă.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cValoare de sănătate invalidă: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aS-a adăugat cu succes {Value} la toate părțile corpului lui {Player}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&aS-a adăugat cu succes {Value} la {Part} lui {Player}.'
+
+    get:
+
+      # Message shown for incorrect command usage
+      usage: '&bUtilizare: /bodyhealth get [jucător] [parte a corpului]'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVă rugăm să furnizați un jucător când utilizați această comandă din consolă.'
+
+      # Message shown on successful health retrieval (all parts)
+      success-all: "&aSănătatea corpului lui {Player}:\n&e&lCap &8&l» &a{Health_HEAD}%\n&e&lCorp &8&l» &a{Health_BODY}%\n&e&lBraț stâng &8&l» &a{Health_ARM_LEFT}%\n&e&lBraț drept &8&l» &a{Health_ARM_RIGHT}%\n&e&lPicior stâng &8&l» &a{Health_LEG_LEFT}%\n&e&lPicior drept &8&l» &a{Health_LEG_RIGHT}%\n&e&lPicior stâng &8&l» &a{Health_FOOT_LEFT}%\n&e&lPicior drept &8&l» &a{Health_FOOT_RIGHT}%"
+
+      # Message shown on successful health retrieval (given part)
+      success-single: '&aSănătatea lui {Player} la {Part} este {Health}%.'
+
+    heal:
+
+      # Message shown for incorrect command usage
+      usage: '&bUtilizare: /bodyhealth set [jucător] [parte a corpului] <valoare>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVă rugăm să furnizați un jucător când utilizați această comandă din consolă.'
+
+      # Message shown on successful healing
+      success-all: '&a{Player} a fost complet vindecat.'
+
+      # Message shown on successful healing
+      success-single: '&a{Part} lui {Player} a fost complet vindecat.'
+
+    reload:
+
+      # Message shown on successful configuration reload
+      success: '&aConfigurarea a fost reîncărcată cu succes.'
+
+      # Message shown if reload fails
+      fail: '&cEșec la reîncărcarea configurației.'
+
+    set:
+
+      # Message shown for incorrect command usage
+      usage: '&bUtilizare: /bodyhealth set [jucător] [parte a corpului] <valoare>'
+
+      # Message shown when no valid target player could be retrieved
+      no-target: '&cVă rugăm să furnizați un jucător când utilizați această comandă din consolă.'
+
+      # Message shown if the value provided is invalid
+      invalid-value: '&cValoare de sănătate invalidă: "{Value}".'
+
+      # Message shown on successful health update (all parts)
+      success-all: '&aToate părțile corpului lui {Player} au fost setate la {Value}.'
+
+      # Message shown on successful health update (given part)
+      success-single: '&a{Part} lui {Player} a fost setat la {Value}.'

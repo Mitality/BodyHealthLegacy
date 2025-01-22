@@ -20,7 +20,7 @@ public class KILL_PLAYER implements BodyHealthEffect {
     @Override
     public void onApply(Player player, BodyPart part, String[] args) {
 
-        if (!player.isDead()) player.damage(Double.MAX_VALUE, player); // player.setHealth(0.0) could cause issues
+        if (!player.isDead()) player.damage(player.getHealth() + 1000, player); // player.setHealth(0.0) could cause issues
         Debug.log("(" + part.name() +") Killed player " + player.getName());
 
     }

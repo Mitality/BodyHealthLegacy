@@ -17,7 +17,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return "BodyHealth";
+        return "BodyHealthLegacy";
     }
 
     @Override

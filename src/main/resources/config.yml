@@ -5,14 +5,17 @@
 #   |____/ \___/ \__,_|\__, |_| |_|\___|\__,_|_|\__|_| |_||_____\___|\__, |\__,_|\___|\__, |
 #       Version ${project.version}    |___/   Manage health per BodyPart (1.20.4-)   |___/            |___/
 
-# PaperMC 1.20.4 exclusive - For those who can't update to 1.20.6 / 1.21 yet
+# Should work on PaperMC 1.20 - 1.20.4, for newer versions, visit the main plugin "BodyHealth" on SpigotMC
 
 #   Commands:
 #
-#      /bodyhealth reload                             ...reloads the plugins configuration, including effects
-#      /bodyhealth heal <player>                      ...heal all BodyParts for a given player (sets health to 100%)
-#      /bodyhealth get <player> <BodyPart>            ...retrieve a players health for a specific BodyPart in percent
-#      /bodyhealth set <player> <BodyPart> <health>   ...set a players health for a specific BodyPart in percent
+#      /bodyhealth reload                              ...reloads the plugins configuration, including effects and language files
+#      /bodyhealth heal [player] [body part]           ...heal a player (sets the health value of all affected body parts to 100%)
+#      /bodyhealth get [player] [body part]            ...retrieve a player's health (in percent) for a specific body part, or all
+#      /bodyhealth set [player] [body part] <health>   ...set a player's health for a specific body part (or all if not specified)
+#      /bodyhealth add [player] [body part] <health>   ...add health to all parts or the given one for a given player or yourself
+#
+#      <health> value can end with a '%' sign to modify health directly in percent
 #
 #   alias: /bh
 
@@ -23,6 +26,7 @@
 #      bodyhealth.heal            ...allows using the heal command
 #      bodyhealth.get             ...allows using the get command
 #      bodyhealth.set             ...allows using the set command
+#      bodyhealth.add             ...allows using the add command
 #
 #   wildcard: bodyhealth.* (Does NOT include bypass permissions!)
 
@@ -43,20 +47,33 @@
 #
 #   <BodyPart> can be HEAD, BODY, ARM_LEFT, ARM_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT
 
+# Set a language file to use from plugins/BodyHealth/language
+# You may define your own and set it here without the '.yml'
+language: en
+
 # Set a prefix to be prepended to all plugin messages
-prefix: "&8&l[&e&lBodyHealth&8&l] "
+prefix: "&8&l[&e&lBodyHealth&8&l] &r"
 
 # Enable this to see what the plugin is doing in your console
 debug-mode: false
 
 # This enables additional information about internal calculations
 # and variables. Also enables visual indicators in game such as
-# displaying raytracing lines with small flame particles.
+# displaying raytracing lines with small flame particles
 development-mode: false
 
 # You can disable all handled error messages here
 # DO NOT REQUEST SUPPORT IF THIS IS SET TO FALSE
 error-logging: true
+
+# BodyHealth always checks for updates once on startup
+# A check is then carried out at the specified interval
+# [hours] When set to 0, no further checks are scheduled
+update-check-interval: 12
+
+# Share anonymous data to improve the plugin's development
+# Recommended to keep enabled for more relevant updates
+metrics: true
 
 # Should we apply damage to body parts, when the
 # source of the damage is the player itself?
@@ -66,6 +83,14 @@ self-harm: false
 # via the effects section. If this is done, should we ensure
 # that all players are still able to eat to heal back up?
 always-allow-eating: true
+
+# Force keep body parts that have been modified by a command
+# at their modified state for the given amount of seconds
+force-keep-time: 10
+
+# Also force keep body parts that have been modified relatively
+# For example through the use of the "/bodyhealth add" command
+force-keep-relative: false
 
 # World Blacklist/Whitelist settings:
 world-blacklist:
@@ -178,7 +203,7 @@ body-damage:
 #      COMMAND / cmd args[...]                  ...execute a command (can use %PlayerName% and %PlayerUUID% as placeholders)
 #      COMMAND_UNDO / cmd args[...]             ...execute a command when the condition is no longer met (to undo stuff)
 #      KILL_PLAYER                              ...you guessed it, this kills the player when the condition is met
-#      SEND_MESSAGE / <MESSAGE>                 ...send a message to the player to notify them of their status
+#      MESSAGE / <MESSAGE>                      ...send a message to the player to notify them of their status
 #
 #   <MESSAGE> (or [MESSAGE]) can be the following:
 #
@@ -188,7 +213,7 @@ body-damage:
 #
 #   All message variants can use colorcodes like &c (=red).
 #
-#   FULL » Health is at maximumx
+#   FULL » Health is at maximum
 #   NEARLYFULL » Health is between 50% and full
 #   INTERMEDIATE » Health is between 25% and 50%
 #   DAMAGED » Health is below 25%
@@ -201,7 +226,7 @@ effects:
     NEARLYFULL: []
     INTERMEDIATE: []
     DAMAGED:
-      - SEND_MESSAGE / TITLE:&4Caution!;&cYou are about to die # Warn players with a title when their health gets below 25%
+      - MESSAGE / TITLE:&4Caution!;&cYou are about to die # Warn players with a title when their health gets below 25%
     BROKEN:
       - KILL_PLAYER # Kill the player when their head reaches 0 HP
   BODY:
@@ -209,10 +234,10 @@ effects:
     NEARLYFULL: []
     INTERMEDIATE: []
     DAMAGED:
-      - SEND_MESSAGE / &cYour body is now below 25% health # Send a normal chat message to the player, informing them of their body health state
+      - MESSAGE / &cYour body is now below 25% health # Send a normal chat message to the player, informing them of their body health state
     BROKEN:
-      - COMMAND / attribute %PlayerName% minecraft:generic.scale base set 2 # Make the player two times as tall when their body reaches 0 HP
-      - COMMAND_UNDO / attribute %PlayerName% minecraft:generic.scale base set 1 # Set the players scale back to normal when their body recovers
+      - COMMAND / give %playerName% diamond 1 # Give the player a diamond when their body reaches 0 HP
+      - COMMAND_UNDO / give %playerName% emerald 1 # Give the player an emerald when their body is no longer at 0 HP
   ARM_LEFT:
     FULL: []
     NEARLYFULL: []
@@ -274,7 +299,7 @@ display:
   betterhud:
     # Automatically configure BetterHud to display body health
     inject-config: true
-    # Show the body health hud to all players in survival mode as default
+    # Show the body health hud to all players **IN SURVIVAL MODE** as default
     as-default: true
     # Disable parts of BetterHuds default configuration that could get annoying
     disable:
@@ -294,6 +319,10 @@ display:
     # (For inexperienced users: leave the above add-options set to true when using this!)
     zip: true
 
+    # When using multiple HUDs simultaneously, one HUD can get pushed down. If BodyHealth's HUD is pushed down,
+    # set this option to "true" and either restart your server or reload first BodyHealth and then BetterHud.
+    fix-height: false
+
     # ^ IF YOU DON'T KNOW WHAT TO DO, LEAVE THE DISPLAY-SETTINGS UNTOUCHED AND USE THE RESOURCE PACK
     # LOCATED AT "plugins/BodyHealth/resource_pack.zip" TO VISUALIZE YOUR HEALTH PER BODY PART IN GAME
     # (YOU STILL NEED TO DOWNLOAD BOTH DEPENDENCIES FOR THIS TO WORK)
@@ -311,3 +340,6 @@ display:
     #
     #   custom-font:
     #      enabled: false
+
+
+  # Config complete and sanity still intact? Well done, you are awesome!

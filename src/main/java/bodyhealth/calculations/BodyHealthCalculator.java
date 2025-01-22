@@ -43,8 +43,7 @@ public class BodyHealthCalculator {
             return calculateHitByEntityLegacy(player, entity);
         }
 
-        AttributeInstance scaleAttribute = player.getAttribute(Attribute.GENERIC_SCALE);
-        double scale = (scaleAttribute != null) ? scaleAttribute.getValue() : 1.0;
+        double scale = 1.0;
 
         Location entityEyeLocation = ((LivingEntity) entity).getEyeHeight() > 1.0 ?
                 ((LivingEntity) entity).getEyeLocation().subtract(0.0, 0.3, 0.0) :
@@ -77,8 +76,7 @@ public class BodyHealthCalculator {
      * @return The hit BodyPart
      */
     public static BodyPart calculateHitByEntityLegacy(Player player, Entity entity) {
-        AttributeInstance scaleAttribute = player.getAttribute(Attribute.GENERIC_SCALE);
-        double scale = (scaleAttribute != null) ? scaleAttribute.getValue() : 1.0;
+        double scale = 1.0;
         double relativeHitY = entity.getLocation().getY() - player.getLocation().getY();
         double relativeYaw = getRelativeYaw(player, entity.getLocation());
         return getHitBodyPart(relativeHitY, relativeYaw, scale);
@@ -91,8 +89,7 @@ public class BodyHealthCalculator {
      * @return The hit BodyPart(s)
      */
     public static BodyPart[] calculateHitByBlock(Player player, Block block) {
-        AttributeInstance scaleAttribute = player.getAttribute(Attribute.GENERIC_SCALE);
-        double scale = (scaleAttribute != null) ? scaleAttribute.getValue() : 1.0;
+        double scale = 1.0;
         double yDiff = (block.getLocation().getY() + 1) - player.getLocation().getY();
         double relativeYaw = getRelativeYaw(player, block.getLocation());
         return determineHitParts(relativeYaw, yDiff, scale);

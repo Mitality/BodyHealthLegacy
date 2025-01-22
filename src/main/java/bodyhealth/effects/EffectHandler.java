@@ -184,8 +184,6 @@ public class EffectHandler {
         }
         if (EffectHandler.preventJump.contains(player)) {
             EffectHandler.preventJump.remove(player);
-            Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_JUMP_STRENGTH)).removeModifier(EffectHandler.getJumpDenialModifier());
-            Debug.log("Removing JumpDenialModifier from player " + player.getName());
         }
         BodyHealthUtils.validateEffects(player);
     }

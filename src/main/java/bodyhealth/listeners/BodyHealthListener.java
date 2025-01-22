@@ -9,6 +9,7 @@ import bodyhealth.Main;
 import bodyhealth.config.Config;
 import bodyhealth.config.Debug;
 import bodyhealth.util.MessageUtils;
+import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
@@ -46,7 +47,7 @@ public class BodyHealthListener implements Listener {
                 Debug.log("Player " + player.getName() + " was hit by an arrow on " + hitBodyPart.name() + " with " + String.format("%.2f", damage) + " damage.");
             }
 
-            else if (damager.getType() == EntityType.CREEPER || damager.getType() == EntityType.TNT || damager.getType() == EntityType.TNT_MINECART || damager.getType() == EntityType.LIGHTNING_BOLT) {
+            else if (damager.getType() == EntityType.CREEPER || damager.getType() == EntityType.PRIMED_TNT || damager.getType() == EntityType.MINECART_TNT || damager.getType() == EntityType.LIGHTNING) {
                 Debug.log("Player " + player.getName() + " was hit by " + damager.getType().name() + " with " + String.format("%.2f", damage) + " damage.");
                 BodyHealthUtils.applyDamageWithConfig(bodyHealth, cause, damage, false);
             }
@@ -139,7 +140,7 @@ public class BodyHealthListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         checkHealthDelayed(event.getPlayer(), event.getPlayer().getHealth()); // Other plugins could heal the player here -> check delayed
         if (event.getHand() == null) return; // Turns out PlayerInteractEvent covers way more than I thought it would
-        if (!Config.always_allow_eating || event.getItem() == null || event.getItem().getItemMeta() == null || !event.getItem().getItemMeta().hasFood()) {
+        if (!Config.always_allow_eating || event.getItem() == null || event.getItem().getItemMeta() == null || !event.getItem().getType().isEdible()) {
             if (BodyHealthUtils.canPlayerInteract(event.getPlayer(), event.getHand())) return;
             MessageUtils.sendEffectMessages(event.getPlayer(), "PREVENT_INTERACT");
             event.setCancelled(true);
@@ -187,6 +188,11 @@ public class BodyHealthListener implements Listener {
             if (BodyHealthUtils.getBodyHealth(event.getPlayer()).getOngoingEffects().isEmpty()) return;
             EffectHandler.removeEffectsFromPlayer(event.getPlayer());
         }
+    }
+
+    @EventHandler
+    public void onPlayerJump(PlayerJumpEvent event) {
+        if (EffectHandler.preventJump.contains(event.getPlayer())) event.setCancelled(true);
     }
 
     @EventHandler

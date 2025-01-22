@@ -6,15 +6,20 @@
 
     <groupId>mitality</groupId>
     <artifactId>BodyHealthLegacy</artifactId>
-    <version>2.1</version>
+    <version>3.0</version>
     <packaging>jar</packaging>
 
     <name>BodyHealthLegacy</name>
 
+    <description>description</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <plugin.version>${project.version}</plugin.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
+    <url>website</url>
 
     <build>
         <plugins>
@@ -33,14 +38,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.6.0</version>
                 <configuration>
                     <relocations>
                         <relocation>
                             <pattern>com.jeff_media.updatechecker</pattern>
                             <shadedPattern>bodyhealth.updatechecker</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>bodyhealth</shadedPattern>
+                        </relocation>
                     </relocations>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/MANIFEST.MF</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
                 </configuration>
                 <executions>
                     <execution>
@@ -62,13 +79,11 @@
     </build>
 
     <repositories>
+
+        <!-- Paper -->
         <repository>
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
 
         <!-- ConfigUpdater -->
@@ -103,10 +118,12 @@
     </repositories>
 
     <dependencies>
+
+        <!-- Paper -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.20.4-R0.1-SNAPSHOT</version>
+            <version>1.20-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -130,6 +147,14 @@
             <groupId>com.jeff_media</groupId>
             <artifactId>SpigotUpdateChecker</artifactId>
             <version>3.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Metrics (bstats) -->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
             <scope>compile</scope>
         </dependency>
 
@@ -165,11 +190,20 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Premium/Super-Vanish -->
+        <dependency>
+            <groupId>com.github.LeonMangler</groupId>
+            <artifactId>SuperVanish</artifactId>
+            <version>6.2.18-3</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- math expressions -->
         <dependency>
             <groupId>net.objecthunter</groupId>
             <artifactId>exp4j</artifactId>
             <version>0.4.8</version>
         </dependency>
+
     </dependencies>
 </project>

@@ -35,7 +35,6 @@ public final class Main extends JavaPlugin {
 
     private static Main instance;
     private static List<String> languages;
-    private static String SPIGOT_RESOURCE_ID;
     public static Map<UUID, BodyHealth> playerBodyHealthMap;
     public static PlaceholderAPI placeholderAPIexpansion;
     public static long validationTimestamp;
@@ -45,7 +44,6 @@ public final class Main extends JavaPlugin {
     public void onLoad() {
         instance = this;
         validationTimestamp = 0;
-        SPIGOT_RESOURCE_ID = "119966";
         languages = new ArrayList<>();
         if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null)  WorldGuard.initialize();
     }
@@ -162,10 +160,10 @@ public final class Main extends JavaPlugin {
         else Debug.log("No existing data was found");
 
         // Check for updates
-        UpdateChecker updateChecker = new UpdateChecker(this, UpdateCheckSource.SPIGOT, SPIGOT_RESOURCE_ID)
-            .setDownloadLink("https://www.spigotmc.org/resources/bodyhealth.119966/")
+        UpdateChecker updateChecker = new UpdateChecker(this, UpdateCheckSource.GITHUB_RELEASE_TAG, "Mitality/BodyHealthLegacy")
+            .setDownloadLink("https://github.com/Mitality/BodyHealthLegacy/releases/latest")
             .setDonationLink("https://paypal.me/mitality")
-            .setChangelogLink("https://www.spigotmc.org/resources/bodyhealth.119966/updates")
+            .setChangelogLink("https://github.com/Mitality/BodyHealthLegacy/releases/latest")
             .setNotifyByPermissionOnJoin("bodyhealth.update-notify")
             .setUserAgent(new UserAgentBuilder().addPluginNameAndVersion());
         if (Config.update_check_interval > 0) updateChecker.checkEveryXHours(Config.update_check_interval);

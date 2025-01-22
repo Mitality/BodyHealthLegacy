@@ -4,6 +4,7 @@ import bodyhealth.Main;
 import bodyhealth.config.Config;
 import bodyhealth.config.Debug;
 import kr.toxicity.hud.api.BetterHudAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -132,11 +133,50 @@ public class BetterHud {
      * @throws IOException
      */
     public static void add() throws IOException {
+
+        File dataFolder = BetterHudAPI.inst().bootstrap().dataFolder();
+        File packMetaFile = new File(dataFolder, "build/pack.mcmeta");
+
         String[] filesToCopy = {
             (Config.add_betterhud_mcmeta) ? "build/pack.mcmeta" : null,
             (Config.add_betterhud_icon) ? "build/pack.png" : null
         };
         copySpecificFiles(filesToCopy, BetterHudAPI.inst().bootstrap().dataFolder(), Main.getInstance());
+
+        if (Config.add_betterhud_mcmeta) {
+
+            String minecraftVersion = Bukkit.getServer().getMinecraftVersion();
+            Debug.logDev("Detected Minecraft version: " + minecraftVersion);
+
+            int pack_format = 0;
+            switch (minecraftVersion) {
+                case "1.20":
+                case "1.20.0":
+                case "1.20.1":
+                    Debug.log("Using pack_format 15 for this version.");
+                    pack_format = 15;
+                    break;
+                case "1.20.2":
+                    Debug.log("Using pack_format 18 for this version.");
+                    pack_format = 18;
+                    break;
+                case "1.20.3":
+                case "1.20.4":
+                    Debug.log("Using pack_format 22 for this version.");
+                    pack_format = 22;
+                    break;
+                case "1.20.5":
+                case "1.20.6":
+                    Debug.log("Using pack_format 32 for this version.");
+                    pack_format = 32;
+                    break;
+                default:
+                    Debug.log("Unsupported version: " + minecraftVersion);
+            }
+
+            if (pack_format > 0) createPackMcmeta(packMetaFile, pack_format);
+        }
+
         Debug.log("Files added successfully");
         zip(); // Zip after adding required files
     }
@@ -242,5 +282,31 @@ public class BetterHud {
                 zos.closeEntry();
             }
         }
+    }
+
+    /**
+     * Utility method to create a .mcmeta file
+     * @param packMetaFile The target file to create
+     * @param packFormat The pack_format to use
+     */
+    private static void createPackMcmeta(File packMetaFile, int packFormat) throws IOException {
+        if (!packMetaFile.getParentFile().exists()) {
+            packMetaFile.getParentFile().mkdirs();
+        }
+
+        String mcmetaContent = String.format("""
+        {
+            "pack": {
+                "pack_format": %d,
+                "description": "BodyHealth"
+            }
+        }
+        """, packFormat);
+
+        try (FileWriter writer = new FileWriter(packMetaFile)) {
+            writer.write(mcmetaContent);
+        }
+
+        Debug.logDev("pack.mcmeta created/updated with pack_format " + packFormat);
     }
 }

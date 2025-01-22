@@ -5,7 +5,7 @@
 #   |____/ \___/ \__,_|\__, |_| |_|\___|\__,_|_|\__|_| |_||_____\___|\__, |\__,_|\___|\__, |
 #       Version ${project.version}    |___/   Manage health per BodyPart (1.20.4-)   |___/            |___/
 
-# Should work on PaperMC 1.20 - 1.20.4, for newer versions, visit the main plugin "BodyHealth" on SpigotMC
+# Should work on PaperMC 1.20 - 1.20.4, maybe 1.20.5/6 too. For newer versions, visit the main plugin "BodyHealth" on SpigotMC
 
 #   Commands:
 #

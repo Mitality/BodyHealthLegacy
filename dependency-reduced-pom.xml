@@ -5,8 +5,8 @@
   <artifactId>BodyHealthLegacy</artifactId>
   <name>BodyHealthLegacy</name>
   <version>3.0</version>
-  <description>description</description>
-  <url>website</url>
+  <description>Minecraft Spigot Plugin to manage Health per BodyPart</description>
+  <url>https://github.com/Mitality/BodyHealthLegacy</url>
   <build>
     <resources>
       <resource>
